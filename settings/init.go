@@ -8,7 +8,7 @@ import (
 func Init(status *bool) {
 	var configFile string
 
-	if status {
+	if *status {
 		log.Println("Loading Production Settings...")
 		configFile = "configs/env/prod/.env"
 	} else {
