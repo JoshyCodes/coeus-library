@@ -1,0 +1,18 @@
+package files
+ 
+import (
+	"log"
+	"os"
+)
+ 
+func CreateDir(path string) {
+	_, err := os.Stat(path)
+ 
+	if os.IsNotExist(err) {
+		errDir := os.MkdirAll(path, 0755)
+		if errDir != nil {
+			log.Fatal(err)
+		}
+ 
+	}
+}
