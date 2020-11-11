@@ -5,7 +5,7 @@ import (
 	"github.com/joho/godotenv"
 )
 
-func Init(status bool) {
+func Init(status *bool) {
 	var configFile string
 
 	if status {
