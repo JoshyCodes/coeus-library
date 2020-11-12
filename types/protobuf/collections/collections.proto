@@ -3,6 +3,8 @@ syntax = "proto3";
 
 package collections;
 
+option go_package = "types/protobuf/collections";
+
 message ListAllRequest {
     string table = 1;
 }
