@@ -1,0 +1,16 @@
+// message
+syntax = "proto3";
+
+package collections;
+
+message ListAllRequest {
+    string table = 1;
+}
+
+message ListAllResponse {
+    string json = 1;
+}
+
+service CollectionsService {
+    rpc ListAll(ListAllRequest) returns (ListAllResponse);
+}
