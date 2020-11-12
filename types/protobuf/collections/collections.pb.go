@@ -9,6 +9,10 @@
 package collections
 
 import (
+	context "context"
+	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -211,4 +215,84 @@ func file_collections_proto_init() {
 	file_collections_proto_rawDesc = nil
 	file_collections_proto_goTypes = nil
 	file_collections_proto_depIdxs = nil
+}
+
+// Reference imports to suppress errors if they are not otherwise used.
+var _ context.Context
+var _ grpc.ClientConnInterface
+
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the grpc package it is being compiled against.
+const _ = grpc.SupportPackageIsVersion6
+
+// CollectionsServiceClient is the client API for CollectionsService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type CollectionsServiceClient interface {
+	ListAll(ctx context.Context, in *ListAllRequest, opts ...grpc.CallOption) (*ListAllResponse, error)
+}
+
+type collectionsServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewCollectionsServiceClient(cc grpc.ClientConnInterface) CollectionsServiceClient {
+	return &collectionsServiceClient{cc}
+}
+
+func (c *collectionsServiceClient) ListAll(ctx context.Context, in *ListAllRequest, opts ...grpc.CallOption) (*ListAllResponse, error) {
+	out := new(ListAllResponse)
+	err := c.cc.Invoke(ctx, "/collections.CollectionsService/ListAll", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// CollectionsServiceServer is the server API for CollectionsService service.
+type CollectionsServiceServer interface {
+	ListAll(context.Context, *ListAllRequest) (*ListAllResponse, error)
+}
+
+// UnimplementedCollectionsServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedCollectionsServiceServer struct {
+}
+
+func (*UnimplementedCollectionsServiceServer) ListAll(context.Context, *ListAllRequest) (*ListAllResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListAll not implemented")
+}
+
+func RegisterCollectionsServiceServer(s *grpc.Server, srv CollectionsServiceServer) {
+	s.RegisterService(&_CollectionsService_serviceDesc, srv)
+}
+
+func _CollectionsService_ListAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListAllRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CollectionsServiceServer).ListAll(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/collections.CollectionsService/ListAll",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CollectionsServiceServer).ListAll(ctx, req.(*ListAllRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _CollectionsService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "collections.CollectionsService",
+	HandlerType: (*CollectionsServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "ListAll",
+			Handler:    _CollectionsService_ListAll_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "collections.proto",
 }
