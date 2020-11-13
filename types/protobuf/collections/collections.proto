@@ -1,4 +1,3 @@
-// message
 syntax = "proto3";
 
 package collections;
