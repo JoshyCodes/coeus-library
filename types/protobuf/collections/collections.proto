@@ -12,6 +12,56 @@ message ListAllResponse {
     string json = 1;
 }
 
+message ListFilteredRequest {
+    string table = 1;
+    string params = 2;
+}
+
+message ListFilteredResponse {
+    string json = 1;
+}
+
+message ListCreateRequest {
+    string table = 1;
+    string data = 2;
+}
+
+message ListCreateResponse {
+    string json = 1;
+}
+
+message ListUpdateRequest {
+    string table = 1;
+    string params = 2;
+    string data = 3;
+}
+
+message ListUpdateResponse {
+    string json = 1;
+}
+
+message ListDeleteRequest {
+    string table = 1;
+    string params = 2;
+}
+
+message ListDeleteResponse {
+    string json = 1;
+}
+
+message HealthCheckRequest {
+    string check = 1;
+}
+
+message HealthCheckResponse {
+    bool status = 1;
+}
+
 service CollectionsService {
+    rpc HealthCheck(HealthCheckRequest) returns (HealthCheckResponse);
     rpc ListAll(ListAllRequest) returns (ListAllResponse);
+    rpc ListFiltered(ListFilteredRequest) returns (ListFilteredResponse);
+    rpc ListCreate(ListCreateRequest) returns (ListCreateResponse);
+    rpc ListUpdate(ListUpdateRequest) returns (ListUpdateResponse);
+    rpc ListDelete(ListDeleteRequest) returns (ListDeleteResponse);
 }
