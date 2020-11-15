@@ -14,7 +14,7 @@ message ListAllResponse {
 
 message ListFilteredRequest {
     string table = 1;
-    string params = 2;
+    map<string, string> params = 2;
 }
 
 message ListFilteredResponse {
