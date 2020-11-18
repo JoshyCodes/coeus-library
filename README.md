@@ -1,7 +1,6 @@
 # coeus-library
 Library of public functions for Coeus Core
 
-
 ### Comm
 #### Grpc
 ###### SetGrpcOptions(tls, certDir string) []grpc.ServerOption
@@ -58,7 +57,6 @@ Library of public functions for Coeus Core
 	@return: bool response of string status
 
 ### Files
-
 ###### CreateDir(path string)
 	Create dir if not already existing
 	@params: path is name/location of dir
@@ -76,12 +74,11 @@ Library of public functions for Coeus Core
 
 ### Types
 #### Protobufs
- These files are for the Grpc connections. The operations are designated in the .proto files
- and then, using protoc, generate the golang .pb.go files that hold the functions needed
- to use the http/2 protocol for faster, secure communications between the services.
+These files are for the Grpc connections. The operations are designated in the .proto files
+and then, using protoc, generate the golang .pb.go files that hold the functions needed
+to use the http/2 protocol for faster, secure communications between the services.
 
 ### Settings
-
 ###### Init(status *bool)
 	Initiates system settings and loads ENV variables based on reported envirment (dev/prod)
 	@params: status bool to specify if application is in prod envirment
