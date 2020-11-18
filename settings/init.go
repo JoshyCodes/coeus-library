@@ -5,7 +5,12 @@ import (
 	"github.com/joho/godotenv"
 )
 
+/**
+ * Initiates system settings and loads ENV variables based on reported envirment (dev/prod)
+ * @params: status bool to specify if application is in prod envirment
+ */
 func Init(status *bool) {
+	
 	var configFile string
 
 	if *status {
