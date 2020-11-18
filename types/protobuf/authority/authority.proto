@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package collections;
+package authority;
 
 option go_package = "types/protobuf/authority";
 
