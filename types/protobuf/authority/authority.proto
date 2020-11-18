@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package collections;
+
+option go_package = "types/protobuf/authority";
+
+message LoginRequest {
+	string user = 1;
+	string pwd = 2;
+}
+
+message LoginResponse {
+    string jwt = 1;
+}
+
+message LogOutRequest {
+    string jwt = 1;
+}
+
+message LogOutResponse {
+    bool response = 1;
+}
+
+message GenerateKeyRequest {
+    string permissions = 1;
+}
+
+message GenerateKeyResponse {
+	string id = 1;
+	string jwt = 2;
+}
+
+message RevokeKeyRequest {
+	string id = 1;
+}
+
+message RevokeKeyResponse {
+	bool response = 1;
+}
+
+message AuthorizeRequest {
+	string jwt = 1;
+	string permission = 2;
+}
+
+message AuthorizeResponse {
+	bool response = 1;
+}
+
+service CollectionsService {
+	rpc Login(LoginRequest) returns (LoginResponse);
+	rpc LogOut(LogOutRequest) returns (LogOutResponse);
+	rpc GenerateKey(GenerateKeyRequest) returns (GenerateKeyResponse);
+	rpc RevokeKey(RevokeKeyRequest) returns (RevokeKeyResponse);
+	rpc Authorize(AuthorizeRequest) returns (AuthorizeResponse);
+}
