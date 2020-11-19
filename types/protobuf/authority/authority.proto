@@ -47,7 +47,7 @@ message AuthorizeResponse {
 	bool response = 1;
 }
 
-service CollectionsService {
+service AuthorityService {
 	rpc Login(LoginRequest) returns (LoginResponse);
 	rpc LogOut(LogOutRequest) returns (LogOutResponse);
 	rpc GenerateKey(GenerateKeyRequest) returns (GenerateKeyResponse);
